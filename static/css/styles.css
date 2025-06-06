@@ -1,0 +1,8 @@
+body { font-family: Arial, sans-serif; margin:20px; }
+.error { color: red; }
+.tiles { display: flex; flex-wrap: wrap; gap: 10px; }
+.tile { border:1px solid #ccc; padding:10px; width:150px; text-align:center; }
+#pdf-container { position: relative; }
+#pdf-canvas { border:1px solid #ccc; }
+#draw-canvas { position:absolute; top:0; left:0; }
+#toolbar { margin-bottom:10px; }
