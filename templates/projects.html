@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <title>Projects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+<h2>Your Projects</h2>
+<form method="post" action="{{ url_for('new_project') }}">
+    <input type="text" name="name" placeholder="Project name">
+    <button type="submit">Create New Project</button>
+</form>
+<div class="tiles">
+{% for project in projects %}
+    <div class="tile">
+        <a href="{{ url_for('edit_project', project_id=project['id']) }}">{{ project['name'] }}</a>
+    </div>
+{% else %}
+    <p>No projects yet.</p>
+{% endfor %}
+</div>
+<p><a href="{{ url_for('logout') }}">Logout</a></p>
+</body>
+</html>

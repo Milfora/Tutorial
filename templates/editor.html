@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <title>Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+<h2>{{ project['name'] }}</h2>
+<div id="toolbar">
+    <input type="file" id="pdf-upload" accept="application/pdf">
+    <button id="scale-btn">Set Scale</button>
+    <button id="poly-btn">Polygon</button>
+    <button id="line-btn">Polyline</button>
+    <button id="point-btn">Point</button>
+    <button id="cloud-btn">Revision Cloud</button>
+    <button id="save-btn">Save</button>
+</div>
+<div id="pdf-container">
+    <canvas id="pdf-canvas"></canvas>
+    <canvas id="draw-canvas"></canvas>
+</div>
+<form id="save-form" method="post" action="{{ url_for('save_project', project_id=project['id']) }}" enctype="multipart/form-data" style="display:none;">
+    <input type="hidden" name="markups" id="markups-input">
+    <input type="hidden" name="scale" id="scale-input">
+    <input type="file" name="pdf" id="pdf-file-input">
+</form>
+<p><a href="{{ url_for('projects') }}">Back to projects</a></p>
+<script>
+window.projectId = {{ project['id'] }};
+</script>
+</body>
+</html>
